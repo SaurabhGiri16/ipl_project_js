@@ -10,7 +10,7 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
         matches.push(data);
     })
     .on('end', () => {
-        
+
         fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/src/data/deliveries.csv')
             .pipe(csv())
             .on('data', (data) => {
@@ -18,7 +18,7 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
             })
             .on('end', () => {
 
-            const extraRunConcededPerteam = new Map();
+                const extraRunConcededPerteam = new Map();
 
                 for (i = 0; i < matches.length; i++) {
                     if (matches[i].season == "2016") {
@@ -49,4 +49,4 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
                     console.log('Output JSON file has been written successfully.');
                 });
             });
-        });
+    });

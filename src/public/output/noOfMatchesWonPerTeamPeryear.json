@@ -1,366 +1,148 @@
 {
- "2008": [
+ "Chennai Super Kings": [
   [
-   "Chennai Super Kings",
+   "2008",
    9
   ],
   [
-   "Deccan Chargers",
-   2
+   "2009",
+   8
   ],
   [
-   "Delhi Daredevils",
-   7
+   "2010",
+   9
   ],
   [
-   "Kings XI Punjab",
+   "2011",
+   11
+  ],
+  [
+   "2012",
    10
   ],
   [
-   "Kolkata Knight Riders",
+   "2013",
+   12
+  ],
+  [
+   "2014",
+   10
+  ],
+  [
+   "2015",
+   10
+  ]
+ ],
+ "Kolkata Knight Riders": [
+  [
+   "2017",
+   9
+  ],
+  [
+   "2008",
    6
   ],
   [
-   "Mumbai Indians",
+   "2009",
+   3
+  ],
+  [
+   "2010",
    7
   ],
   [
-   "Rajasthan Royals",
+   "2011",
+   8
+  ],
+  [
+   "2012",
+   12
+  ],
+  [
+   "2013",
+   6
+  ],
+  [
+   "2014",
+   11
+  ],
+  [
+   "2015",
+   7
+  ],
+  [
+   "2016",
+   8
+  ]
+ ],
+ "Mumbai Indians": [
+  [
+   "2017",
+   12
+  ],
+  [
+   "2008",
+   7
+  ],
+  [
+   "2009",
+   5
+  ],
+  [
+   "2010",
+   11
+  ],
+  [
+   "2011",
+   10
+  ],
+  [
+   "2012",
+   10
+  ],
+  [
+   "2013",
    13
   ],
   [
-   "Royal Challengers Bangalore",
-   4
-  ]
- ],
- "2009": [
-  [
-   "Chennai Super Kings",
-   8
-  ],
-  [
-   "Deccan Chargers",
-   9
-  ],
-  [
-   "Delhi Daredevils",
-   10
-  ],
-  [
-   "Kings XI Punjab",
+   "2014",
    7
   ],
   [
-   "Kolkata Knight Riders",
-   3
+   "2015",
+   10
   ],
   [
-   "Mumbai Indians",
+   "2016",
+   7
+  ]
+ ],
+ "Rising Pune Supergiants": [
+  [
+   "2016",
    5
-  ],
-  [
-   "Rajasthan Royals",
-   6
-  ],
-  [
-   "Royal Challengers Bangalore",
-   9
   ]
  ],
- "2010": [
+ "Sunrisers Hyderabad": [
   [
-   "Chennai Super Kings",
-   9
-  ],
-  [
-   "Deccan Chargers",
+   "2017",
    8
   ],
   [
-   "Delhi Daredevils",
+   "2013",
+   10
+  ],
+  [
+   "2014",
+   6
+  ],
+  [
+   "2015",
    7
   ],
   [
-   "Kings XI Punjab",
-   4
-  ],
-  [
-   "Kolkata Knight Riders",
-   7
-  ],
-  [
-   "Mumbai Indians",
+   "2016",
    11
-  ],
-  [
-   "Rajasthan Royals",
-   6
-  ],
-  [
-   "Royal Challengers Bangalore",
-   8
-  ]
- ],
- "2011": [
-  [
-   "",
-   1
-  ],
-  [
-   "Chennai Super Kings",
-   11
-  ],
-  [
-   "Deccan Chargers",
-   6
-  ],
-  [
-   "Delhi Daredevils",
-   4
-  ],
-  [
-   "Kings XI Punjab",
-   7
-  ],
-  [
-   "Kochi Tuskers Kerala",
-   6
-  ],
-  [
-   "Kolkata Knight Riders",
-   8
-  ],
-  [
-   "Mumbai Indians",
-   10
-  ],
-  [
-   "Pune Warriors",
-   4
-  ],
-  [
-   "Rajasthan Royals",
-   6
-  ],
-  [
-   "Royal Challengers Bangalore",
-   10
-  ]
- ],
- "2012": [
-  [
-   "Chennai Super Kings",
-   10
-  ],
-  [
-   "Deccan Chargers",
-   4
-  ],
-  [
-   "Delhi Daredevils",
-   11
-  ],
-  [
-   "Kings XI Punjab",
-   8
-  ],
-  [
-   "Kolkata Knight Riders",
-   12
-  ],
-  [
-   "Mumbai Indians",
-   10
-  ],
-  [
-   "Pune Warriors",
-   4
-  ],
-  [
-   "Rajasthan Royals",
-   7
-  ],
-  [
-   "Royal Challengers Bangalore",
-   8
-  ]
- ],
- "2013": [
-  [
-   "Chennai Super Kings",
-   12
-  ],
-  [
-   "Delhi Daredevils",
-   3
-  ],
-  [
-   "Kings XI Punjab",
-   8
-  ],
-  [
-   "Kolkata Knight Riders",
-   6
-  ],
-  [
-   "Mumbai Indians",
-   13
-  ],
-  [
-   "Pune Warriors",
-   4
-  ],
-  [
-   "Rajasthan Royals",
-   11
-  ],
-  [
-   "Royal Challengers Bangalore",
-   9
-  ],
-  [
-   "Sunrisers Hyderabad",
-   10
-  ]
- ],
- "2014": [
-  [
-   "Chennai Super Kings",
-   10
-  ],
-  [
-   "Delhi Daredevils",
-   2
-  ],
-  [
-   "Kings XI Punjab",
-   12
-  ],
-  [
-   "Kolkata Knight Riders",
-   11
-  ],
-  [
-   "Mumbai Indians",
-   7
-  ],
-  [
-   "Rajasthan Royals",
-   7
-  ],
-  [
-   "Royal Challengers Bangalore",
-   5
-  ],
-  [
-   "Sunrisers Hyderabad",
-   6
-  ]
- ],
- "2015": [
-  [
-   "",
-   2
-  ],
-  [
-   "Chennai Super Kings",
-   10
-  ],
-  [
-   "Delhi Daredevils",
-   5
-  ],
-  [
-   "Kings XI Punjab",
-   3
-  ],
-  [
-   "Kolkata Knight Riders",
-   7
-  ],
-  [
-   "Mumbai Indians",
-   10
-  ],
-  [
-   "Rajasthan Royals",
-   7
-  ],
-  [
-   "Royal Challengers Bangalore",
-   8
-  ],
-  [
-   "Sunrisers Hyderabad",
-   7
-  ]
- ],
- "2016": [
-  [
-   "Delhi Daredevils",
-   7
-  ],
-  [
-   "Gujarat Lions",
-   9
-  ],
-  [
-   "Kings XI Punjab",
-   4
-  ],
-  [
-   "Kolkata Knight Riders",
-   8
-  ],
-  [
-   "Mumbai Indians",
-   7
-  ],
-  [
-   "Rising Pune Supergiants",
-   5
-  ],
-  [
-   "Royal Challengers Bangalore",
-   9
-  ],
-  [
-   "Sunrisers Hyderabad",
-   11
-  ]
- ],
- "2017": [
-  [
-   "Delhi Daredevils",
-   6
-  ],
-  [
-   "Gujarat Lions",
-   4
-  ],
-  [
-   "Kings XI Punjab",
-   7
-  ],
-  [
-   "Kolkata Knight Riders",
-   9
-  ],
-  [
-   "Mumbai Indians",
-   12
-  ],
-  [
-   "Rising Pune Supergiant",
-   10
-  ],
-  [
-   "Royal Challengers Bangalore",
-   3
-  ],
-  [
-   "Sunrisers Hyderabad",
-   8
   ]
  ]
 }

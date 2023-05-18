@@ -58,7 +58,7 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
         console.log();
         console.log(new Map([...noOfMatchesWonPerTeamPerYear.entries()].sort()));
 
-        jsonData = JSON.stringify(Object.fromEntries(noOfMatchesWonPerTeamPerYear), null, 1);
+        jsonData = JSON.stringify(Object.fromEntries(new Map([...noOfMatchesWonPerTeamPerYear.entries()].sort())), null, 1);
         fs.writeFile('../public/output/noOfMatchesWonPerTeamPeryear.json', jsonData, (error) => {
             if (error) {
                 console.error('Error:', error);
@@ -74,7 +74,7 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
             })
             .on('end', () => {
 
-            const extraRunConcededPerteam = new Map();
+                const extraRunConcededPerteam = new Map();
 
                 for (i = 0; i < matches.length; i++) {
                     if (matches[i].season == "2016") {
@@ -95,7 +95,7 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
                 console.log();
                 console.log(new Map([...extraRunConcededPerteam.entries()].sort()));
 
-                let jsonData = JSON.stringify(Object.fromEntries(extraRunConcededPerteam), null, 6);
+                let jsonData = JSON.stringify(Object.fromEntries(new Map([...extraRunConcededPerteam.entries()].sort())), null, 6);
                 fs.writeFile('../public/output/extraRunConcededPerteamin2016.json', jsonData, (error) => {
                     if (error) {
                         console.error('Error:', error);
@@ -139,7 +139,7 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
                 //economyPerBowler = new Map([...economyPerBowler.entries()].sort());// sort by key
                 const topEconomyBowler = new Map([...economyPerBowler.entries()].sort((a, b) => a[1] - b[1]));
 
-                
+
                 var count = 0;
                 for (const [key, value] of topEconomyBowler) {
                     count++;
@@ -151,16 +151,16 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
 
                 }
 
-                 jsonData = JSON.stringify(Object.fromEntries(top10EconomyBowler), null, 6);
+                jsonData = JSON.stringify(Object.fromEntries(top10EconomyBowler), null, 6);
                 fs.writeFile('../public/output/top10EconomyBowler.json', jsonData, (error) => {
                     if (error) {
                         console.error('Error:', error);
                         return;
                     }
                     console.log('Output JSON file has been written successfully.');
-        });
+                });
 
+            });
     });
-});
 
 

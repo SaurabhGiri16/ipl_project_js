@@ -11,12 +11,12 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
     .on('end', () => {
 
         const winner = [];
-        for(i=0; i<matches.length; i++){
-            if(!(winner.includes(matches[i].winner))){
+        for (i = 0; i < matches.length; i++) {
+            if (!(winner.includes(matches[i].winner))) {
                 winner.push(matches[i].winner);
             }
         }
-        
+
         const noOfMatchesWonPerTeamPerYear = new Map();
 
         for (let i = 0; i < winner.length; i++) {
