@@ -1,7 +1,6 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 
-const noOfMatchesPlayedPerYear = new Map();
 
 const matches = [];
 
@@ -67,9 +66,8 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
 
                 }
 
-                jsonObject = Object.fromEntries(top10EconomyBowler);
-                jsonString = JSON.stringify(jsonObject);
-                jsonData = JSON.stringify(jsonString, null, 2);
+                jsonData = JSON.stringify(Object.fromEntries(top10EconomyBowler), null, 6);
+
                 fs.writeFile('../public/output/top10EconomyBowler.json', jsonData, (error) => {
                     if (error) {
                         console.error('Error:', error);

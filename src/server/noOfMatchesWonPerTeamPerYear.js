@@ -1,9 +1,7 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 
-const noOfMatchesPlayedPerYear = new Map();
-
-const year = [];
+const year = []; 
 const matches = [];
 
 fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/src/data/matches.csv')
@@ -33,9 +31,8 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
                     }
                 }
             }
-
-            noOfMatchesWonPerTeamPerYear.set(year[i], noOfMatchesWonPerTeam);
-
+            const noOfMatchWonPerTeamData = Array.from(noOfMatchesWonPerTeam);
+            noOfMatchesWonPerTeamPerYear.set(year[i], noOfMatchWonPerTeamData.sort());
         }
         console.log("2. No of Matches Won per Team:");
         console.log();

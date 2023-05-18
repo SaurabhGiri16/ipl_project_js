@@ -1,7 +1,7 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 
-const noOfMatchesPlayedPerYear = new Map();
+
 
 const year = [];
 const matches = [];
@@ -12,6 +12,7 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
         matches.push(data);
     })
     .on('end', () => {
+        const noOfMatchesPlayedPerYear = new Map();
         for (let i = 0; i < matches.length; i++) {
             if (noOfMatchesPlayedPerYear.has(matches[i].season)) {
                 noOfMatchesPlayedPerYear.set(matches[i].season, noOfMatchesPlayedPerYear.get(matches[i].season) + 1);
@@ -25,9 +26,8 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
         console.log();
         console.log(new Map([...noOfMatchesPlayedPerYear.entries()].sort()));
 
-        let jsonObject = Object.fromEntries(noOfMatchesPlayedPerYear);
-        let jsonString = JSON.stringify(jsonObject);
-        let jsonData = JSON.stringify(jsonString, null, 2);
+        let jsonData = JSON.stringify(Object.fromEntries(noOfMatchesPlayedPerYear), null, 6);
+
         fs.writeFile('../public/output/noOfMatchesPlayedPerYea.json', jsonData, (error) => {
             if (error) {
                 console.error('Error:', error);

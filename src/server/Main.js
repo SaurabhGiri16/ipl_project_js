@@ -1,10 +1,9 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 
-const noOfMatchesPlayedPerYear = new Map();
-
 const year = [];
 const matches = [];
+const deliveries = [];
 
 fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/src/data/matches.csv')
     .pipe(csv())
@@ -12,6 +11,8 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
         matches.push(data);
     })
     .on('end', () => {
+        const noOfMatchesPlayedPerYear = new Map();
+
         for (let i = 0; i < matches.length; i++) {
             if (noOfMatchesPlayedPerYear.has(matches[i].season)) {
                 noOfMatchesPlayedPerYear.set(matches[i].season, noOfMatchesPlayedPerYear.get(matches[i].season) + 1);
@@ -23,11 +24,9 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
 
         console.log("1. No of Matches Played Per Year: ");
         console.log();
-        console.log(noOfMatchesPlayedPerYear);
-
-        let jsonObject = Object.fromEntries(noOfMatchesPlayedPerYear);
-        let jsonString = JSON.stringify(jsonObject);
-        let jsonData = JSON.stringify(jsonString, null, 2);
+        console.log(new Map([...noOfMatchesPlayedPerYear.entries()].sort()));
+        let jsonData = JSON.stringify(Object.fromEntries(noOfMatchesPlayedPerYear), null, 6);
+     
         fs.writeFile('../public/output/noOfMatchesPlayedPerYea.json', jsonData, (error) => {
             if (error) {
                 console.error('Error:', error);
@@ -51,8 +50,8 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
                     }
                 }
             }
-
-            noOfMatchesWonPerTeamPerYear.set(year[i], noOfMatchesWonPerTeam);
+            const noOfMatchWonPerTeamData = Array.from(noOfMatchesWonPerTeam);
+            noOfMatchesWonPerTeamPerYear.set(year[i], noOfMatchWonPerTeamData.sort());
 
         }
         console.log("2. No of Matches Won per Team:");
@@ -60,9 +59,7 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
         console.log(noOfMatchesWonPerTeamPerYear);
 
 
-        jsonObject = Object.fromEntries(noOfMatchesWonPerTeamPerYear);
-        jsonString = JSON.stringify(jsonObject);
-        jsonData = JSON.stringify(jsonString, null, 2);
+        jsonData = JSON.stringify(Object.fromEntries(noOfMatchesWonPerTeamPerYear), null, 1);
         fs.writeFile('../public/output/noOfMatchesWonPerTeamPeryear.json', jsonData, (error) => {
             if (error) {
                 console.error('Error:', error);
@@ -74,7 +71,7 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
 
 
 
-        const deliveries = [];
+        
         fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/src/data/deliveries.csv')
             .pipe(csv())
             .on('data', (data) => {
@@ -103,11 +100,10 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
                 }
                 console.log("3. extra Run Conceded Per Team in: 2016");
                 console.log();
-                console.log(extraRunConcededPerteam);
+                console.log(new Map([...extraRunConcededPerteam.entries()].sort()));
 
-                let jsonObject = Object.fromEntries(extraRunConcededPerteam);
-                let jsonString = JSON.stringify(jsonObject);
-                let jsonData = JSON.stringify(jsonString, null, 2);
+                
+                let jsonData = JSON.stringify(Object.fromEntries(extraRunConcededPerteam), null, 6);
                 fs.writeFile('../public/output/extraRunConcededPerteamin2016.json', jsonData, (error) => {
                     if (error) {
                         console.error('Error:', error);
@@ -163,9 +159,7 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
 
                 }
 
-                jsonObject = Object.fromEntries(top10EconomyBowler);
-                jsonString = JSON.stringify(jsonObject);
-                jsonData = JSON.stringify(jsonString, null, 2);
+                 jsonData = JSON.stringify(Object.fromEntries(top10EconomyBowler), null, 6);
                 fs.writeFile('../public/output/top10EconomyBowler.json', jsonData, (error) => {
                     if (error) {
                         console.error('Error:', error);

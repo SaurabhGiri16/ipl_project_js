@@ -1,10 +1,9 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 
-const noOfMatchesPlayedPerYear = new Map();
-
 const year = [];
 const matches = [];
+const deliveries = [];
 
 fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/src/data/matches.csv')
     .pipe(csv())
@@ -13,7 +12,7 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
     })
     .on('end', () => {
         
-        const deliveries = [];
+        
         fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/src/data/deliveries.csv')
             .pipe(csv())
             .on('data', (data) => {
@@ -44,9 +43,8 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
                 console.log();
                 console.log(new Map([...extraRunConcededPerteam.entries()].sort()));
 
-                let jsonObject = Object.fromEntries(extraRunConcededPerteam);
-                let jsonString = JSON.stringify(jsonObject);
-                let jsonData = JSON.stringify(jsonString, null, 2);
+                let jsonData = JSON.stringify(Object.fromEntries(extraRunConcededPerteam), null, 6);
+
                 fs.writeFile('../public/output/extraRunConcededPerteamin2016.json', jsonData, (error) => {
                     if (error) {
                         console.error('Error:', error);
