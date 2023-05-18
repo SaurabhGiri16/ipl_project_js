@@ -1,7 +1,6 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 
-const year = [];
 const matches = [];
 const deliveries = [];
 
@@ -11,6 +10,7 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
         matches.push(data);
     })
     .on('end', () => {
+        const winner = [];
         const noOfMatchesPlayedPerYear = new Map();
 
         for (let i = 0; i < matches.length; i++) {
@@ -18,15 +18,15 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
                 noOfMatchesPlayedPerYear.set(matches[i].season, noOfMatchesPlayedPerYear.get(matches[i].season) + 1);
             } else {
                 noOfMatchesPlayedPerYear.set(matches[i].season, 1);
-                year.push(matches[i].season);
+                winner.push(matches[i].winner);
             }
         }
 
         console.log("1. No of Matches Played Per Year: ");
         console.log();
         console.log(new Map([...noOfMatchesPlayedPerYear.entries()].sort()));
+
         let jsonData = JSON.stringify(Object.fromEntries(noOfMatchesPlayedPerYear), null, 6);
-     
         fs.writeFile('../public/output/noOfMatchesPlayedPerYea.json', jsonData, (error) => {
             if (error) {
                 console.error('Error:', error);
@@ -35,29 +35,28 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
             console.log('Output JSON file has been written successfully.');
         });
 
-
-
         const noOfMatchesWonPerTeamPerYear = new Map();
 
-        for (let i = 0; i < year.length; i++) {
+        for (let i = 0; i < winner.length; i++) {
             const noOfMatchesWonPerTeam = new Map();
             for (let j = 0; j < matches.length; j++) {
-                if (year[i] == matches[j].season) {
-                    if (noOfMatchesWonPerTeam.has(matches[j].winner)) {
-                        noOfMatchesWonPerTeam.set(matches[j].winner, noOfMatchesWonPerTeam.get(matches[j].winner) + 1);
+                if (winner[i] == matches[j].winner) {
+                    if (noOfMatchesWonPerTeam.has(matches[j].season)) {
+                        noOfMatchesWonPerTeam.set(matches[j].season, noOfMatchesWonPerTeam.get(matches[j].season) + 1);
                     } else {
-                        noOfMatchesWonPerTeam.set(matches[j].winner, 1);
+                        noOfMatchesWonPerTeam.set(matches[j].season, 1);
                     }
                 }
             }
+
             const noOfMatchWonPerTeamData = Array.from(noOfMatchesWonPerTeam);
-            noOfMatchesWonPerTeamPerYear.set(year[i], noOfMatchWonPerTeamData.sort());
+            noOfMatchesWonPerTeamPerYear.set(winner[i], noOfMatchWonPerTeamData);
 
         }
+
         console.log("2. No of Matches Won per Team:");
         console.log();
-        console.log(noOfMatchesWonPerTeamPerYear);
-
+        console.log(new Map([...noOfMatchesWonPerTeamPerYear.entries()].sort()));
 
         jsonData = JSON.stringify(Object.fromEntries(noOfMatchesWonPerTeamPerYear), null, 1);
         fs.writeFile('../public/output/noOfMatchesWonPerTeamPeryear.json', jsonData, (error) => {
@@ -68,10 +67,6 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
             console.log('Output JSON file has been written successfully.');
         });
 
-
-
-
-        
         fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/src/data/deliveries.csv')
             .pipe(csv())
             .on('data', (data) => {
@@ -79,9 +74,7 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
             })
             .on('end', () => {
 
-
-                const extraRunConcededPerteam = new Map();
-
+            const extraRunConcededPerteam = new Map();
 
                 for (i = 0; i < matches.length; i++) {
                     if (matches[i].season == "2016") {
@@ -102,7 +95,6 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
                 console.log();
                 console.log(new Map([...extraRunConcededPerteam.entries()].sort()));
 
-                
                 let jsonData = JSON.stringify(Object.fromEntries(extraRunConcededPerteam), null, 6);
                 fs.writeFile('../public/output/extraRunConcededPerteamin2016.json', jsonData, (error) => {
                     if (error) {
@@ -111,7 +103,6 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
                     }
                     console.log('Output JSON file has been written successfully.');
                 });
-
 
                 console.log("4. Top 10 economical bowlers in the year 2015");
                 console.log();
@@ -136,18 +127,19 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
                         }
                     }
                 }
+
                 let economyPerBowler = new Map();
+                let top10EconomyBowler = new Map();
 
                 for (const [key, value] of totalBallPerBowler) {
                     let eco = totalRunPerBowler.get(key) * 6 / totalBallPerBowler.get(key);
-
                     economyPerBowler.set(key, eco);
                 }
+
                 //economyPerBowler = new Map([...economyPerBowler.entries()].sort());// sort by key
                 const topEconomyBowler = new Map([...economyPerBowler.entries()].sort((a, b) => a[1] - b[1]));
 
-
-                const top10EconomyBowler = new Map();
+                
                 var count = 0;
                 for (const [key, value] of topEconomyBowler) {
                     count++;
@@ -166,8 +158,9 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
                         return;
                     }
                     console.log('Output JSON file has been written successfully.');
-                });
-            });
+        });
+
     });
+});
 
 

@@ -1,7 +1,6 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 
-const year = []; 
 const matches = [];
 
 fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/src/data/matches.csv')
@@ -11,37 +10,36 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
     })
     .on('end', () => {
 
-        const year = [];
+        const winner = [];
         for(i=0; i<matches.length; i++){
-            if(!(year.includes(matches[i].season))){
-                year.push(matches[i].season);
+            if(!(winner.includes(matches[i].winner))){
+                winner.push(matches[i].winner);
             }
         }
         
         const noOfMatchesWonPerTeamPerYear = new Map();
 
-        for (let i = 0; i < year.length; i++) {
+        for (let i = 0; i < winner.length; i++) {
             const noOfMatchesWonPerTeam = new Map();
             for (let j = 0; j < matches.length; j++) {
-                if (year[i] == matches[j].season) {
-                    if (noOfMatchesWonPerTeam.has(matches[j].winner)) {
-                        noOfMatchesWonPerTeam.set(matches[j].winner, noOfMatchesWonPerTeam.get(matches[j].winner) + 1);
+                if (winner[i] == matches[j].winner) {
+                    if (noOfMatchesWonPerTeam.has(matches[j].season)) {
+                        noOfMatchesWonPerTeam.set(matches[j].season, noOfMatchesWonPerTeam.get(matches[j].season) + 1);
                     } else {
-                        noOfMatchesWonPerTeam.set(matches[j].winner, 1);
+                        noOfMatchesWonPerTeam.set(matches[j].season, 1);
                     }
                 }
             }
+
             const noOfMatchWonPerTeamData = Array.from(noOfMatchesWonPerTeam);
-            noOfMatchesWonPerTeamPerYear.set(year[i], noOfMatchWonPerTeamData.sort());
+            noOfMatchesWonPerTeamPerYear.set(winner[i], noOfMatchWonPerTeamData.sort());
         }
+
         console.log("2. No of Matches Won per Team:");
         console.log();
-        console.log(noOfMatchesWonPerTeamPerYear);
+        console.log(new Map([...noOfMatchesWonPerTeamPerYear.entries()].sort()));
 
-
-        jsonObject = Object.fromEntries(noOfMatchesWonPerTeamPerYear);
-        jsonString = JSON.stringify(jsonObject);
-        jsonData = JSON.stringify(jsonString, null, 2);
+        jsonData = JSON.stringify(Object.fromEntries(new Map([...noOfMatchesWonPerTeamPerYear.entries()].sort())), null, 2);
         fs.writeFile('../public/output/noOfMatchesWonPerTeamPeryear.json', jsonData, (error) => {
             if (error) {
                 console.error('Error:', error);
