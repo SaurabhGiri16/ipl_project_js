@@ -1,14 +1,7 @@
 const fs = require('fs');
-const csv = require('csv-parser');
 
-const matches = [];
 
-fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/src/data/matches.csv')
-    .pipe(csv())
-    .on('data', (data) => {
-        matches.push(data);
-    })
-    .on('end', () => {
+    function findNoOfMatchesWonPerTeamPerYear(matches){
 
         const winner = [];
         for (i = 0; i < matches.length; i++) {
@@ -47,5 +40,6 @@ fs.createReadStream('/home/saurabhgiri/Project_Mountblue/ipl_project_using_JS/sr
             }
             console.log('Output JSON file has been written successfully.');
         });
+    }
 
-    });
+    module.exports=findNoOfMatchesWonPerTeamPerYear;
